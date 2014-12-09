@@ -1,0 +1,37 @@
+{
+  "name": "Meagazine",
+  "version": "0.1.0",
+  "homepage": "https://github.com/Meatazine/Meatazine2",
+  "authors": [
+    "Meathill <meathill@gmail.com>"
+  ],
+  "description": "a creative tools for e-megazine creator",
+  "main": "index.html",
+  "keywords": [
+    "e-megazine",
+    "authoring",
+    "tool"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.1",
+    "backbone": "~1.1.2",
+    "handlebars": "~2.0.0",
+    "moment": "~2.8.4",
+    "html2canvas": "~0.4.1",
+    "font-awesome": "~4.2.0",
+    "animate.css": "~3.2.0",
+    "nervenet": "~0.1.9"
+  },
+  "devDependencies": {
+    "bootstrap-sass": "twbs/bootstrap-sass#~3.3.1"
+  }
+}
