@@ -32,6 +32,7 @@
     "nervenet": "~0.1.9"
   },
   "devDependencies": {
-    "bootstrap-sass": "twbs/bootstrap-sass#~3.3.1"
+    "bootstrap-sass": "twbs/bootstrap-sass#~3.3.1",
+    "colors": "~2.0.0"
   }
 }

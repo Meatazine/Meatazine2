@@ -3,6 +3,12 @@
  */
 'use strict';
 $(function () {
+  var context = Nervenet.createContext()
+    , me = new mgz.model.Me();
+
+  var router = new mgz.router.Router();
+
+  me.fetch();
 
   // GA
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
