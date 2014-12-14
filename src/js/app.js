@@ -4,9 +4,16 @@
 'use strict';
 $(function () {
   var context = Nervenet.createContext()
-    , me = new mgz.model.Me();
+    , me = new mgz.model.Me()
+    , body = new mgz.view.Body({
+      el: 'body'
+    });
 
-  var router = new mgz.router.Router();
+  context
+    .mapValue('me', me)
+    .mapValue('body', body)
+    .inject(me);
+  context.createInstance(mgz.router.Router);
 
   me.fetch();
 

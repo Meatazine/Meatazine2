@@ -4,5 +4,6 @@
 var DEBUG = true
   , ga = null
   , mgz = {
+    component: {},
     router: {}
   };

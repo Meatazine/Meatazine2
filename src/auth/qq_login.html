@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head lang="cn">
+  <meta charset="UTF-8">
+  <title>QQ登录完成</title>
+  <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="alert alert-success">
+  <i class="glyphicon glyphicon-ok"></i> 登录成功，跳转中，请稍候。
+</div>
+<script>
+  var search = location.search
+    , reg = /[?^&]code=(\w+)&?/
+    , match = search.match(reg);
+  opener.mgz.setAuthCode(match[1]);
+</script>
+</body>
+</html>
