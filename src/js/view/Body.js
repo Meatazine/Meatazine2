@@ -43,6 +43,9 @@
 
       return this;
     },
+    hideLogin: function () {
+      this.$('#mgz-login').remove();
+    },
     loadCompleteHandler: function (response, status) {
       if (status === 'error') {
         this.trigger('load:failed');

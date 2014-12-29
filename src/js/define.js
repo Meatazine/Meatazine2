@@ -4,6 +4,14 @@
 var DEBUG = true
   , ga = null
   , mgz = {
+    auth: {
+      Factory: {
+        create: function (type, code, options) {
+
+        }
+      }
+    },
     component: {},
-    router: {}
+    router: {},
+    utils: {}
   };

@@ -10,10 +10,11 @@
   <i class="glyphicon glyphicon-ok"></i> 登录成功，跳转中，请稍候。
 </div>
 <script>
-  var search = location.search
-    , reg = /[?^&]code=(\w+)&?/
-    , match = search.match(reg);
-  opener.mgz.setAuthCode(match[1]);
+  var hash = location.hash
+    , reg = /[#^&]access_token=(\w+)&?/
+    , match = hash.match(reg);
+  opener.mgz.setToken(match[1], 'qq');
+  close();
 </script>
 </body>
 </html>

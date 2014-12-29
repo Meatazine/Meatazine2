@@ -3,8 +3,9 @@
  */
 'use strict';
 $(function () {
-  var context = Nervenet.createContext()
-    , me = new mgz.model.Me()
+  var auth = mgz.utils.parseQuery(location.search)
+    , context = Nervenet.createContext()
+    , me = new mgz.model.Me(auth)
     , body = new mgz.view.Body({
       el: 'body'
     });
@@ -12,8 +13,10 @@ $(function () {
   context
     .mapValue('me', me)
     .mapValue('body', body)
-    .inject(me);
+    .inject(me)
+    .inject(mgz.component.Manager);
   context.createInstance(mgz.router.Router);
+  context.createInstance(mgz.router.MyWorks);
 
   me.fetch();
 

@@ -4,21 +4,32 @@
  */
 'use strict';
 (function (ns) {
-  var singleton
-    , url = encodeURIComponent(location.protocol + '//' + location.host + location.pathname);
+  var KEY = 'me'
+    , AUTH_TYPE = ''
+    , singleton
+    , url = encodeURIComponent(location.protocol + '//' + location.host + location.pathname + 'auth/qq_login.html');
 
   ns.Me = Backbone.Model.extend({
+    idAttribute: 'token',
+    urlRoot: mgz.config.API + 'user/',
     login: {
       welcome: '肉大师电子杂志工具',
       api: mgz.config.api,
       appid: mgz.config.appid,
       url: url
     },
-    urlRoot: mgz.config.API + 'user/',
     initialize: function () {
       if (!singleton) {
+        mgz.setToken = _.bind(this.setToken, this);
+        window.callback = _.bind(this.setUser, this);
+        this.onSuccess = _.bind(this.onSuccess, this);
+        this.onError = _.bind(this.onError, this);
         singleton = this;
-        this.on('change:id', this.id_changeHandler, this);
+
+        var store = localStorage.getItem(KEY);
+        if (store) {
+          this.set(JSON.parse(store));
+        }
       } else {
         throw new Error('duplicate me');
       }
@@ -29,36 +40,36 @@
       options.error = this.onError;
       Backbone.Model.prototype.fetch.call(this, options);
     },
-    setAuthCode: function (code) {
-      var self = this;
-      $.get('https://graph.qq.com/oauth2.0/token', {
-        grant_type: 'authorization_code',
-        client_id: mgz.config.appid,
-        client_secret: mgz.config.appkey,
-        code: code,
-        redirect_uri: url
-      }, function (response) {
-        var reg = /[?&^]access_token=(\w+)[&$]/
-          , match = response.match(reg);
-        self.save('token', match[1]);
-      })
+    letsRock: function () {
+      if (!Backbone.History.started) {
+        return Backbone.history.start({
+          root: '/Meatazine2/'
+        });
+      }
+      return false;
+    },
+    setToken: function (token, type) {
+      this.set('token', token);
+      localStorage.setItem(AUTH_TYPE, type);
+
+      var script = document.createElement('script');
+      script.src = 'https://graph.qq.com/oauth2.0/me?access_token=' + token;
+      document.head.appendChild(script);
+    },
+    setUser: function (response) {
+      this.save(response, {
+        success: this.onSuccess,
+        error: this.onError
+      });
     },
     onError: function () {
+      this.letsRock();
       location.hash = '#/user/login'
-      Backbone.history.start({
-        root: '/Meatazine2/'
-      });
     },
     onSuccess: function () {
-      var route = Backbone.history.start({
-        root: '/Meatazine2/'
-      });
-      if (!route) {
+      if (!this.letsRock()) {
         location.hash = '#/my';
       }
-    },
-    id_changeHandler: function () {
-      location.href = '#/my';
     }
   });
 
