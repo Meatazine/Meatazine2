@@ -40,6 +40,9 @@
       options.error = this.onError;
       Backbone.Model.prototype.fetch.call(this, options);
     },
+    parse: function (response) {
+      return response.me;
+    },
     letsRock: function () {
       if (!Backbone.History.started) {
         return Backbone.history.start({

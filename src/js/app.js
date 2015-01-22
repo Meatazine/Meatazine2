@@ -8,6 +8,10 @@ $(function () {
     , me = new mgz.model.Me(auth)
     , body = new mgz.view.Body({
       el: 'body'
+    })
+    , profile = new mgz.view.Profile({
+      el: '#my-profile',
+      model: me
     });
 
   context

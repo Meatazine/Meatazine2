@@ -22,7 +22,7 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "~3.3.1",
+    "bootstrap": "~3.3.2",
     "backbone": "~1.1.2",
     "handlebars": "~2.0.0",
     "moment": "~2.8.4",
@@ -32,7 +32,7 @@
     "nervenet": "~0.1.9"
   },
   "devDependencies": {
-    "bootstrap-sass": "twbs/bootstrap-sass#~3.3.1",
+    "bootstrap-sass": "twbs/bootstrap-sass#~3.3.2",
     "colors": "~2.0.0"
   }
 }
