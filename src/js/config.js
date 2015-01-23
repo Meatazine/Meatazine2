@@ -4,7 +4,7 @@
 'use strict';
 (function (ns) {
   ns.config = {
-    API: 'http://localhost:3000/',
+    API: 'http://meagazine.com/api/',
     appid: '100289540',
     appkey: 'beae6d5261917928760dedc414f68771'
   };
