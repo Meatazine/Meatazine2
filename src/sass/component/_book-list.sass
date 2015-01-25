@@ -1,7 +1,45 @@
+@import "../../../bower_components/colors/sass/variables"
+@import "../../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables"
+@import "../define"
+
 .book-list
   list-style: none
+  margin: 0
+  padding: 0
 
   li
+    background: #FFF
+    box-shadow: 0 2px 1px rgba(0, 0, 0, .1)
+    cursor: pointer
+    display: inline-block
+    margin-bottom: $gap-m
+    padding: 0
 
+    img
+      display: block
+      max-width: 100%
 
-  .add
+    h3
+      font-size: 1.25em
+      line-height: 2em
+      margin: 0
+      text-align: center
+
+    .stat
+      color: $gray
+      float: right
+      font-size: 10px
+      line-height: 35px
+      padding-right: $gap
+
+      span + span
+        margin-left: $gap-s
+
+    &.active
+      box-shadow: 0 2px 2px rgba(0, 0, 0, .3)
+
+    &:nth-child(2n - 1)
+      margin-left: $gap-l
+
+  &:empty
+    content: '（暂无作品）'

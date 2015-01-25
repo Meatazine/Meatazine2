@@ -5,14 +5,15 @@
 (function (ns) {
   ns.MyWorks = Backbone.Router.extend({
     $body: null,
-    $me: null,
+    $books: null,
     routes: {
       'my(/?)': 'showMyList',
-      'my/:book/:page': 'showMyBook'
+      'book/:book/page/:page': 'showMyBook'
     },
     showMyList: function () {
+      this.books = this.books ||
       this.$body.hideLogin();
-      this.$body.load('page/works.hbs', this.$me);
+      this.$body.load('page/works.html', this.$book, {className: 'works'});
     },
     showMyBook: function (book, page) {
 

@@ -6,6 +6,7 @@ $(function () {
   var auth = mgz.utils.parseQuery(location.search)
     , context = Nervenet.createContext()
     , me = new mgz.model.Me(auth)
+    , books = new mgz.model.Books()
     , body = new mgz.view.Body({
       el: 'body'
     })
@@ -17,6 +18,7 @@ $(function () {
   context
     .mapValue('me', me)
     .mapValue('body', body)
+    .mapValue('books', books)
     .inject(me)
     .inject(mgz.component.Manager);
   context.createInstance(mgz.router.Router);

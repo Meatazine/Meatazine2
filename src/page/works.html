@@ -1,0 +1,33 @@
+<header class="page-header">
+  <h2>最近作品</h2>
+  <a href="#/book/" class="btn btn-primary add-button"><i class="fa fa-plus"></i> 创建作品</a>
+</header>
+<div class="row">
+  <div class="col-md-8 col-sm-12">
+    <ul class="book-list row" id="book-list" data-pagination=".pagination" data-url="{{API}}my/">
+      <script type="text/x-handlebars-template">
+        <li class="book col-sm-12 col-md-6 col-lg-4" data-id="{{id}}">
+          <img src="../assets/DSCN1038.JPG">
+          <footer>
+            <div class="stat">
+              <span class="fa fa-eye"> 0</span>
+              <span class="fa fa-heart"> 0</span>
+              <span class="fa fa-comment"> 0</span>
+            </div>
+            <h3>{{title}}</h3>
+          </footer>
+        </li>
+      </script>
+    </ul>
+    <hr>
+    <nav>
+      <ul class="pagination">
+        <li><a href="#prev" aria-label="前一页"><span aria-hidden="true" class="fa fa-chevron-left"></span></a></li>
+        <script type="text/x-handlebars-template">
+        </script>
+        <li><a href="#{{page}}">{{page-number}}</a></li>
+        <li><a href="#next" aria-label="下一页"><span aria-hidden="true" class="fa fa-chevron-right"></span></a></li>
+      </ul>
+    </nav>
+  </div>
+</div>

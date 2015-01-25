@@ -19,9 +19,9 @@
       mgz.component.Manager.clear(this.$el);
     },
     load: function (url, model, options) {
-      options = options || {
+      options = _.extend({
         isFull: false
-      };
+      }, options);
       this.clear();
       this.$el.toggleClass('full-page', options.isFull)
         .removeClass(this.lastClass);
@@ -31,10 +31,12 @@
         var page = new mgz.view.Loader({
           template: url,
           model: model,
-          className: 'className' in model ? model.className : ''
+          className: 'className' in options ? options.className : ''
         });
         this.container.html(page.$el);
       } else {
+        this.lastClass = options && options.className || '';
+        this.$el.addClass(this.lastClass);
         this.container.load(url, this.loadCompleteHandler);
       }
 

@@ -6,7 +6,8 @@
   ns.Manager = {
     $context: null,
     map: {
-      '#mgz-login': mgz.component.Login
+      '#mgz-login': mgz.component.Login,
+      '#book-list': mgz.view.BookList
     },
     check: function (el, mediator) {
       var components = [];
