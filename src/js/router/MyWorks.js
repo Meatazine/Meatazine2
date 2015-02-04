@@ -13,7 +13,10 @@
     showMyList: function () {
       this.books = this.books ||
       this.$body.hideLogin();
-      this.$body.load('page/works.html', this.$book, {className: 'works'});
+      this.$body.load('page/works.html', this.$book, {
+        className: 'works',
+        loader: mgz.page.BookList
+      });
     },
     showMyBook: function (book, page) {
 

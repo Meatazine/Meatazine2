@@ -4,6 +4,7 @@
 'use strict';
 (function (ns) {
   ns.Body = Backbone.View.extend({
+    $context: null,
     isStart: false,
     lastClass: '',
     initialize: function () {
@@ -19,19 +20,17 @@
       mgz.component.Manager.clear(this.$el);
     },
     load: function (url, model, options) {
-      options = _.extend({
-        isFull: false
-      }, options);
+      options = options || {};
       this.clear();
-      this.$el.toggleClass('full-page', options.isFull)
+      this.$el.toggleClass('full-page', !!options.isFull)
         .removeClass(this.lastClass);
 
       // html or hbs
       if (/\.hbs$/.test(url)) {
-        var page = new mgz.view.Loader({
+        var klass = options.loader || mgz.view.Loader
+          , page = this.$context.createInstance(klass, {
           template: url,
-          model: model,
-          className: 'className' in options ? options.className : ''
+          model: model
         });
         this.container.html(page.$el);
       } else {

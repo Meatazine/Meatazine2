@@ -4,6 +4,10 @@
 'use strict';
 (function (ns) {
   ns.Books = Backbone.Collection.extend({
-    url: mgz.config.API + 'books/'
+    prefix: 'book-',
+    url: mgz.config.API + 'book/',
+    parse: function (response) {
+      return response.books;
+    }
   });
 }(Nervenet.createNameSpace('mgz.model')));
