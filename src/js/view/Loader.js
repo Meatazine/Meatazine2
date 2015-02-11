@@ -6,6 +6,7 @@
   ns.Loader = Backbone.View.extend({
     tagName: 'div',
     initialize: function (options) {
+      this.isHTML = /\.html$/i.test(options.template);
       if (this.model instanceof Backbone.Model && this.model.isNew()) {
         this.model.once('sync', this.model_syncHandler, this);
         this.model.fetch();
@@ -30,6 +31,11 @@
       this.isModelReady = true;
     },
     template_getHandler: function (data) {
+      if (this.isHTML) {
+        this.$el.html(data);
+        this.render();
+        return;
+      }
       this.template = Handlebars.compile(data);
       if (this.isModelReady) {
         this.render();

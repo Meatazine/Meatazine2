@@ -19,6 +19,7 @@ $(function () {
     .mapValue('me', me)
     .mapValue('body', body)
     .mapValue('books', books)
+    .inject(body)
     .inject(me)
     .inject(mgz.component.Manager);
   context.createInstance(mgz.router.Router);

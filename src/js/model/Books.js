@@ -5,6 +5,7 @@
 (function (ns) {
   ns.Books = Backbone.Collection.extend({
     prefix: 'book-',
+    model: ns.Book,
     url: mgz.config.API + 'book/',
     parse: function (response) {
       return response.books;

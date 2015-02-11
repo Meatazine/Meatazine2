@@ -26,15 +26,14 @@
         .removeClass(this.lastClass);
 
       // html or hbs
-      if (/\.hbs$/.test(url)) {
+      if (/\.hbs$/.test(url) || options.loader) {
+        options.template = url;
+        options[model instanceof Backbone.Model ? 'model' : 'collection'] = model;
         var klass = options.loader || mgz.view.Loader
-          , page = this.$context.createInstance(klass, {
-          template: url,
-          model: model
-        });
+          , page = this.$context.createInstance(klass, options);
         this.container.html(page.$el);
       } else {
-        this.lastClass = options && options.className || '';
+        this.lastClass = options.className || '';
         this.$el.addClass(this.lastClass);
         this.container.load(url, this.loadCompleteHandler);
       }

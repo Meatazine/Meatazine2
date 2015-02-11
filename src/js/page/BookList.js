@@ -5,8 +5,11 @@
 (function (ns) {
   ns.BookList = mgz.view.Loader.extend({
     collection: '{{$books}}',
-    initialize: function () {
-
+    render: function () {
+      this.list = new mgz.component.List({
+        el: this.$('#book-list'),
+        collection: this.collection
+      });
     }
   });
 }(Nervenet.createNameSpace('mgz.page')));
