@@ -24,6 +24,7 @@ $(function () {
     .inject(mgz.component.Manager);
   context.createInstance(mgz.router.Router);
   context.createInstance(mgz.router.MyWorks);
+  context.createInstance(mgz.router.Editor);
 
   me.fetch();
 

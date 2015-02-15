@@ -7,7 +7,7 @@
     tagName: 'div',
     initialize: function (options) {
       this.isHTML = /\.html$/i.test(options.template);
-      if (this.model instanceof Backbone.Model && this.model.isNew()) {
+      if (!options.hasData && this.model instanceof Backbone.Model && this.model.isNew()) {
         this.model.once('sync', this.model_syncHandler, this);
         this.model.fetch();
       } else {

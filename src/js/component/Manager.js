@@ -6,7 +6,7 @@
   ns.Manager = {
     $context: null,
     map: {
-      '#mgz-login': mgz.component.Login,
+      '#mgz-login': mgz.component.Login
     },
     check: function (el, mediator) {
       var components = [];
@@ -14,6 +14,9 @@
 
       // 自动初始化组件
       for (var selector in this.map) {
+        if (!this.map.hasOwnProperty(selector)) {
+          continue;
+        }
         var dom = el.find(selector);
         if (dom.length) {
           var init = {

@@ -1,0 +1,35 @@
+@import "../../../bower_components/colors/sass/variables"
+@import "../../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables"
+@import "../define"
+@import "compass/css3/box-shadow"
+
+$page-list-width: 200px
+
+.editor
+  flex: 1
+  background-color: $editor-background-color
+  display: flex
+  position: relative
+
+  aside
+    width: $page-list-width
+    border-right: 1px solid darken($editor-background-color, 10%)
+
+  .navbar
+    position: absolute
+    top: $gap-l
+    left: $page-list-width + $gap-l
+    right: $gap-l
+
+  .content
+    flex: 1
+    display: flex
+    justify-content: center
+    align-items: center
+    padding-top: $gap-l + $navbar-height
+
+#book-preview
+  width: 1024px
+  height: 768px
+  background-color: $white
+  @include box-shadow(0 2px 2px rgba(0, 0, 0, 0.3))

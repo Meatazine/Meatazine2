@@ -6,7 +6,7 @@
   ns.Profile = Backbone.View.extend({
     initialize: function () {
       this.template = Handlebars.compile(this.$('script').remove().html());
-      this.model.on('change:openid', this.model_changeHandler, this);
+      this.model.on('change:nickname', this.model_changeHandler, this);
     },
     render: function () {
       this.$el.prepend(this.template(this.model.toJSON()));

@@ -25,14 +25,14 @@
     "bootstrap": "~3.3.2",
     "backbone": "~1.1.2",
     "handlebars": "~2.0.0",
-    "moment": "~2.8.4",
+    "moment": "~2.9.0",
     "html2canvas": "~0.4.1",
-    "font-awesome": "~4.2.0",
+    "font-awesome": "~4.3.0",
     "animate.css": "~3.2.0",
     "nervenet": "~0.1.9"
   },
   "devDependencies": {
-    "bootstrap-sass": "twbs/bootstrap-sass#~3.3.2",
+    "bootstrap-sass": "twbs/bootstrap-sass#~3.3.3",
     "colors": "~2.0.0"
   }
 }

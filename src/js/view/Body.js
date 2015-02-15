@@ -28,7 +28,7 @@
       // html or hbs
       if (/\.hbs$/.test(url) || options.loader) {
         options.template = url;
-        options[model instanceof Backbone.Model ? 'model' : 'collection'] = model;
+        options[model instanceof Backbone.Collection ? 'collection' : 'model'] = model;
         var klass = options.loader || mgz.view.Loader
           , page = this.$context.createInstance(klass, options);
         this.container.html(page.$el);
