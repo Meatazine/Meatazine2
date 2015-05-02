@@ -21,7 +21,8 @@ $(function () {
     .mapValue('books', books)
     .inject(body)
     .inject(me)
-    .inject(mgz.component.Manager);
+    .inject(mgz.component.Manager)
+    .inject(mgz.popup.Manager);
   context.createInstance(mgz.router.Router);
   context.createInstance(mgz.router.MyWorks);
   context.createInstance(mgz.router.Editor);

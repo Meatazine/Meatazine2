@@ -12,6 +12,8 @@ var DEBUG = true
       }
     },
     component: {},
+    popup: {},
     router: {},
+    service: {},
     utils: {}
   };

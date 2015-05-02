@@ -22,17 +22,19 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "~3.3.2",
+    "bootstrap": "~3.3.4",
     "backbone": "~1.1.2",
-    "handlebars": "~2.0.0",
-    "moment": "~2.9.0",
+    "handlebars": "~3.0.2",
+    "moment": "~2.10.2",
     "html2canvas": "~0.4.1",
     "font-awesome": "~4.3.0",
-    "animate.css": "~3.2.0",
+    "animate.css": "~3.2.6",
     "nervenet": "~0.1.9"
   },
   "devDependencies": {
-    "bootstrap-sass": "twbs/bootstrap-sass#~3.3.3",
-    "colors": "~2.0.0"
+    "bootstrap-sass": "twbs/bootstrap-sass#~3.3.4",
+    "colors": "~2.2.0",
+    "qunit": "~1.18.0",
+    "mh-simple-uploader": "~0.6.1"
   }
 }

@@ -59,6 +59,51 @@
   肉大师 &copy; Copyright 2014
 </footer>
 
+<script type="text/x-handlebars-template" id="popup">
+  <div class="modal modal-styled fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+          <h4 class="modal-title">{{title}}</h4>
+        </div>
+        <div class="modal-body">{{{content}}}</div>
+        <div class="modal-footer">
+          {{#if confirm}}<button class="btn btn-primary" form="popup-form"><i class="fa fa-check"></i> {{confirm}}</button>{{/if}}
+          {{#if cancel}}<button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true">{{cancel}}</button>{{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+<script type="text/x-handlebars-template" id="editor-popup">
+  <div class="modal modal-styled fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">编辑</h4>
+        </div>
+        <div class="modal-body">
+          <div class="info"></div>
+          <div class="alert alert-msg" style="display: none"></div>
+          <p class="loading"><i class="fa fa-spin fa-spinner fa-4x"></i></p>
+          {{#if comment}}
+          <div class="form-group">
+            <label for="editor-comment">附言</label>
+            <textarea class="form-control" id="editor-comment" form="prop-editor" name="{{comment}}" rows="2" required></textarea>
+          </div>
+          {{/if}}
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" form="prop-editor" disabled><i class="fa fa-check"></i> 保存</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i> 取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="../bower_components/underscore/underscore-min.js"></script>
@@ -67,12 +112,16 @@
 <script src="../bower_components/moment/min/moment-with-locales.min.js"></script>
 <script src="../bower_components/nervenet/nervenet.min.js"></script>
 <script src="../bower_components/html2canvas/build/html2canvas.min.js"></script>
+<script src="../bower_components/mh-simple-uploader/dist/js/SimpleUploader.min.js"></script>
 <script src="js/adapter/backbone.js"></script>
 <script src="js/define.js"></script>
 <script src="js/config.js"></script>
+<script src="js/service/Manager.js"></script>
+<script src="js/view/DataSyncView.js"></script>
 <script src="js/component/Login.js"></script>
 <script src="js/component/List.js"></script>
 <script src="js/component/Pager.js"></script>
+<script src="js/component/SmartForm.js"></script>
 <script src="js/component/Manager.js"></script>
 <script src="js/model/Me.js"></script>
 <script src="js/model/Pages.js"></script>
@@ -81,6 +130,9 @@
 <script src="js/router/Router.js"></script>
 <script src="js/router/MyWorks.js"></script>
 <script src="js/router/Editor.js"></script>
+<script src="js/popup/Manager.js"></script>
+<script src="js/popup/Base.js"></script>
+<script src="js/popup/NewBook.js"></script>
 <script src="js/view/Body.js"></script>
 <script src="js/view/Loader.js"></script>
 <script src="js/view/Profile.js"></script>

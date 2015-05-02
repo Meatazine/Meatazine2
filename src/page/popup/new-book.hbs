@@ -1,0 +1,18 @@
+﻿<form action="{{API}}" class="model-editor" method="post">
+  <div class="form-group">
+    <label for="book-name">杂志名称</label>
+    <input class="form-control" name="book-name" id="book-name" placeholder="杂志名称">
+  </div>
+  <div class="form-group">
+    <label for="book-type">杂志类型</label>
+    <select class="form-control" name="book-type" id="book-type">
+      {{#each types}}
+        <option value="{{@index}}">{{.}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="book-desc">杂志简介</label>
+    <textarea class="form-control" name="book-desc" id="book-desc" placeholder="杂志简介" rows="3"></textarea>
+  </div>
+</form>

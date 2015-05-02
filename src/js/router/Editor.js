@@ -7,24 +7,34 @@
     $body: null,
     $books: null,
     routes: {
-      'book/new': 'createBook',
-      'book/:book/page/:page': 'showMyBook'
+      'editor/(:book)': 'showBook',
+      'editor/:book/page/:page': 'showPage'
     },
-    createBook: function () {
-      var model = new mgz.model.Book();
+    showBook: function (bookid) {
+      var model = new mgz.model.Book({id: bookid});
       this.$body.load('page/editor.html', model, {
         className: 'editor',
         loader: mgz.page.Editor,
         hasData: true
-      })
+      });
+      if (bookid) {
+        model.fetch();
+      } else {
+        mgz.popup.Manager.popup({
+          model: model,
+          popup: mgz.popup.NewBook,
+          confirm: '保存',
+          title: '设置杂志属性'
+        });
+      }
     },
-    showMyBook: function (book, page) {
+    showPage: function (book, page) {
       var model = book ? this.$books.get(book) : new mgz.model.Book();
       this.$body.load('page/editor.html', model, {
         className: 'editor',
         loader: mgz.page.Editor,
         hasData: true
-      })
+      });
     }
   });
 }(Nervenet.createNameSpace('mgz.router')));
