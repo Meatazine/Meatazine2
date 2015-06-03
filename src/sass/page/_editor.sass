@@ -21,11 +21,15 @@ $page-list-width: 200px
 
   .navbar
     position: absolute
-    top: $gap-l
-    left: $page-list-width + $gap-l
-    right: $gap-l
+    top: $gap
+    left: $page-list-width + $gap
+    right: $gap
 
     .book-title
+      border-bottom: 1px dashed
+      font-size: 1em
+      margin: 0
+
       &:empty:after
         content: '[edit]'
 
@@ -36,7 +40,7 @@ $page-list-width: 200px
     align-items: center
     padding-top: $gap-l + $navbar-height
 
-#book-preview
+.page-editor
   width: 1024px
   height: 768px
   background-color: $white

@@ -8,6 +8,10 @@
   };
   ns.Book = Backbone.Model.extend({
     options: options,
+    initialize: function (attr, options) {
+      Backbone.Model.prototype.initialize.call(this, attr, options);
+      this.set('pages', new Backbone.Collection());
+    },
     toJSON: function (options) {
       var json = Backbone.Model.prototype.toJSON.call(this);
       if (options) {

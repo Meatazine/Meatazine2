@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a href="#" class="navbar-brand"><h1 class="book-title">{{book-name}}</h1> <i class="fa fa-edit"></i></a>
+      <a href="#" class="navbar-brand"><h1 class="book-title"></h1>
     </div>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#" title="保存"><i class="fa fa-floppy-o"></i></a></li>
@@ -12,11 +12,14 @@
 </nav>
 <aside>
   <ul class="page-list">
-    <li class="btn btn-primary btn-block add-button"><i class="fa fa-plus"></i></li>
+    <script type="text/x-handlebars-template">
+      <li class="item"><img src="{{data}}" class="img-thumbnail img-rounded"></li>
+    </script>
+    <li class="btn btn-primary btn-lg btn-block add-button"><i class="fa fa-plus"></i></li>
   </ul>
 </aside>
 <div class="content">
-  <div id="book-preview">
+  <div class="page-editor">
 
   </div>
 </div>

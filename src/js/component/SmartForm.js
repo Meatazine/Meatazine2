@@ -34,13 +34,6 @@
       'data': 'dataHandler',
       'click .collapsible legend': 'legend_clickHandler'
     },
-    initialize: function () {
-      this.submit = this.getSubmit();
-      if (this.model instanceof Backbone.Model) {
-        this.model.on('invalid', this.model_invalidHandler, this);
-      }
-      this.initUploader();
-    },
     remove: function () {
       this.model.off(null, null, this);
       _.each(this.uploaders, function (uploader) {
@@ -109,21 +102,6 @@
       }
       return submit;
     },
-    initUploader: function () {
-      var id = this.model ? this.model.id : null
-        , self = this
-        , collection = this.uploaders;
-      this.$('.uploader').each(function () {
-        var options = $(this).data();
-        if (id) {
-          options.data = {id: id};
-        }
-        var uploader = new meathill.SimpleUploader(this, options);
-        uploader.on('start', self.uploader_startHandler, self);
-        uploader.on('data', self.uploader_dataHandler, self);
-        collection.push(uploader);
-      });
-    },
     useData: function (data) {
       for (var key in data) {
         if (!data.hasOwnProperty(key)) {
@@ -165,26 +143,15 @@
     legend_clickHandler: function (event) {
       $(event.currentTarget).toggleClass('collapsed');
     },
-    model_invalidHandler: function (model, error) {
-      this.displayResult(false, error, 'times');
-      this.trigger('error', null, 1, {message: error});
-    },
     submit_successHandler: function(response) {
       this.displayResult(true, response.msg, 'smile-o');
       this.$el.trigger('success');
       this.trigger('success', response);
     },
     submit_errorHandler: function(xhr, status, error) {
-      error = tp.Error.getAjaxMessage(xhr, status, error);
+      error = mgz.Error.getAjaxMessage(xhr, status, error);
       this.displayResult(false, error.message, error.icon);
       this.trigger('error', xhr, status, error);
-    },
-    uploader_dataHandler: function (data) {
-      this.$el.removeClass('uploading');
-      this.useData(data);
-    },
-    uploader_startHandler: function () {
-      this.$el.addClass('uploading');
     },
     dataHandler: function (event, data) {
       this.useData(data);
@@ -225,40 +192,6 @@
           error: this.submit_errorHandler,
           context: this,
           method: this.$el.attr('method')
-        });
-        return false;
-      }
-
-      // 编辑model
-      if (this.$el.hasClass('model-editor') && isPass) {
-        var attr = {}
-          , self = this;
-        _.each(this.$el.serializeArray(), function (element) {
-          var key = element.name.replace('[]', '');
-          if (attr[key] !== undefined) {
-            if (!_.isArray(attr[key])) {
-              attr[key] = [attr[key]];
-            }
-            attr[key].push(element.value);
-          } else {
-            attr[key] = element.value;
-          }
-        }, this);
-        this.$('.switch').each(function () {
-          var isNumber = !isNaN(parseInt(this.value))
-            , value = isNumber ? Number(this.value) : this.value;
-          value = this.checked ? value : !value;
-          attr[this.name] = isNumber ? Number(value) : value;
-        });
-        this.model.save(attr, {
-          patch: true,
-          wait: true,
-          success: function (model, response) {
-            self.submit_successHandler(response);
-          },
-          error: function (model, response) {
-            self.submit_errorHandler(response);
-          }
         });
         return false;
       }

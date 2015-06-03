@@ -7,7 +7,6 @@
     $context: null,
     map: {
       '#mgz-login': mgz.component.Login,
-      'form': mgz.component.SmartForm
     },
     check: function (el, mediator) {
       var components = [];

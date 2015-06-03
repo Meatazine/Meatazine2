@@ -8,4 +8,6 @@
     appid: '100289540',
     appkey: 'beae6d5261917928760dedc414f68771'
   };
+  
+  ns.BASE_URL = '/src';
 }(Nervenet.createNameSpace('mgz')));

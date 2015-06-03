@@ -6,6 +6,7 @@
   ns.Editor = Backbone.Router.extend({
     $body: null,
     $books: null,
+    $context: null,
     routes: {
       'editor/(:book)': 'showBook',
       'editor/:book/page/:page': 'showPage'
@@ -14,7 +15,7 @@
       var model = new mgz.model.Book({id: bookid});
       this.$body.load('page/editor.html', model, {
         className: 'editor',
-        loader: mgz.page.Editor,
+        loader: mgz.component.Editor,
         hasData: true
       });
       if (bookid) {

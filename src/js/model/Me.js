@@ -46,7 +46,7 @@
     letsRock: function () {
       if (!Backbone.History.started) {
         return Backbone.history.start({
-          root: '/Meatazine2/'
+          root: mgz.BASE_URL
         });
       }
       return false;

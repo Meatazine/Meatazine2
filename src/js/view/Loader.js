@@ -17,7 +17,10 @@
       $.get(options.template, _.bind(this.template_getHandler, this), 'html');
     },
     render: function () {
-      this.$el.html(this.template(this.model instanceof Backbone.Model ? this.model.toJSON() : this.model));
+      if (this.template) {
+        this.$el.html(this.template(this.model instanceof Backbone.Model ? this.model.toJSON() : this.model));
+      }
+
       var $el = this.$el
         , model = this.model;
       setTimeout(function () {

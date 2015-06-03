@@ -1,5 +1,5 @@
 /**
- * Created by Meathill on 2015/5/2.
+ * Created by 路佳 on 2015/5/8.
  */
 'use strict';
 (function (ns) {
@@ -9,7 +9,7 @@
     backdrop: false,
     keyboard: false
   };
-  ns.NewBook = ns.Base.extend({
+  ns.NewPage = ns.Base.extend({
     events: {
       'submit': 'submitHandler'
     },
@@ -18,10 +18,9 @@
       ns.Base.prototype.initialize.call(this, options);
     },
     submitHandler: function (event) {
-      var attr = _.toObject($(event.target).serializeArray());
-      this.model.set(attr);
+      var attr = _.object($(event.target).serializeArray());
+      this.collection.create(attr);
       this.$el.modal('hide');
-      event.preventDefault();
     }
   });
 }(Nervenet.createNameSpace('mgz.popup')));
