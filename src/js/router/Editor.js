@@ -9,33 +9,32 @@
     $context: null,
     routes: {
       'editor/(:book)': 'showBook',
-      'editor/:book/page/:page': 'showPage'
+      'editor/:book/page/:page': 'showBook'
     },
-    showBook: function (bookid) {
-      var model = new mgz.model.Book({id: bookid});
+    createEditor: function (model, page) {
       this.$body.load('page/editor.html', model, {
         className: 'editor',
         loader: mgz.component.Editor,
-        hasData: true
+        hasData: true,
+        page: page || 0
       });
-      if (bookid) {
-        model.fetch();
-      } else {
-        mgz.popup.Manager.popup({
-          model: model,
-          popup: mgz.popup.NewBook,
-          confirm: '保存',
-          title: '设置杂志属性'
-        });
-      }
     },
-    showPage: function (book, page) {
-      var model = book ? this.$books.get(book) : new mgz.model.Book();
-      this.$body.load('page/editor.html', model, {
-        className: 'editor',
-        loader: mgz.page.Editor,
-        hasData: true
-      });
+    showBook: function (bookid, page) {
+      var model;
+      if (bookid) {
+        model = new mgz.model.Book({id: bookid});
+        model.fetch();
+        this.createEditor(model, page);
+        this.$context.remove('book');
+        this.$context.mapValue('book', model)
+      } else {
+        model = this.$context.getValue('book');
+        if (!model) {
+          model = new mgz.model.Book();
+          this.$context.mapValue('book', model);
+        }
+        this.createEditor(model);
+      }
     }
   });
 }(Nervenet.createNameSpace('mgz.router')));

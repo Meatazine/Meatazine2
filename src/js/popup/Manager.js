@@ -41,6 +41,13 @@
       editor = EditorFactory.createEditor(this.$context, options);
       return editor;
     },
+    popupNewBook: function () {
+      manager.popup(_.extend({
+        popup: ns.NewBook,
+        confirm: '保存',
+        title: '设置杂志属性'
+      }, mgz.model.Book.prototype.options));
+    },
     popupButton_clickHandler: function (event) {
       var target = event.currentTarget
         , options = _.extend({}, popupDefault, $(target).data());

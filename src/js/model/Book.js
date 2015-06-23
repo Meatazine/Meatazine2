@@ -10,7 +10,14 @@
     options: options,
     initialize: function (attr, options) {
       Backbone.Model.prototype.initialize.call(this, attr, options);
-      this.set('pages', new Backbone.Collection());
+
+      if (this.isNew()) {
+        this.createPages();
+      }
+    },
+    parse: function (response, options) {
+      this.createPages(response.book.pages);
+      return _.omit(response.book, 'pages');
     },
     toJSON: function (options) {
       var json = Backbone.Model.prototype.toJSON.call(this);
@@ -19,6 +26,10 @@
       }
       _.extend(json, this.options);
       return json;
+    },
+    createPages: function (data) {
+      var pages = new ns.Pages(data);
+      this.set('pages', pages);
     }
   });
 }(Nervenet.createNameSpace('mgz.model')));

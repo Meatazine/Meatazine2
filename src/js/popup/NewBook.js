@@ -10,17 +10,20 @@
     keyboard: false
   };
   ns.NewBook = ns.Base.extend({
-    events: {
+    $context: null,
+    events: _.extend({
       'submit': 'submitHandler'
-    },
+    }, ns.Base.prototype.events),
     initialize: function (options) {
       options = _.extend({}, defaults, options);
       ns.Base.prototype.initialize.call(this, options);
     },
     submitHandler: function (event) {
-      var attr = _.toObject($(event.target).serializeArray());
-      this.model.set(attr);
+      var attr = _.toObject($(event.target).serializeArray())
+        , model = this.model = new mgz.model.Book(attr);
       this.$el.modal('hide');
+      this.$context.mapValue('book', model);
+      location.href = '#/editor/'
       event.preventDefault();
     }
   });

@@ -75,6 +75,7 @@
     },
     hiddenHandler: function () {
       this.remove();
+      this.trigger('hidden');
     },
     keydownHandler: function (event) {
       if (event.keyCode === 13 && event.ctrlKey) {
