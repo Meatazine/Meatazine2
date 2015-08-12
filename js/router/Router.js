@@ -8,18 +8,19 @@
     $body: null,
     $me: null,
     routes: {
-      'user/:page': 'showUserPage'
+      'login(/)': 'showLoginPage',
+      'logout(/)': 'logout'
     },
-    showUserPage: function (page) {
-      if (page === 'logout') {
-        return this.$me.destroy({
-          success: function (model) {
-            model.clear();
-            location.hash = '#/user/login';
-          }
-        })
-      }
-      this.$body.load('page/' + page + '.hbs', this.$me.login, {
+    logout: function () {
+      this.$me.destroy({
+        success: function (model) {
+          model.clear();
+          location.hash = '#/login/';
+        }
+      });
+    },
+    showLoginPage: function () {
+      this.$body.load('page/login.hbs', this.$me.login, {
         isFull: true,
         className: 'login'
       });

@@ -27,8 +27,8 @@
     "handlebars": "~3.0.3",
     "moment": "~2.10.3",
     "html2canvas": "~0.5.0-alpha2",
-    "font-awesome": "~4.3.0",
-    "animate.css": "~3.3.0",
+    "font-awesome": "~4.4.0",
+    "animate.css": "~3.4.0",
     "nervenet": "~0.1.9"
   },
   "devDependencies": {

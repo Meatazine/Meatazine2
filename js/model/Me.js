@@ -11,7 +11,7 @@
 
   ns.Me = Backbone.Model.extend({
     idAttribute: 'token',
-    urlRoot: mgz.config.API + 'user/',
+    urlRoot: mgz.config.API + 'auth/',
     login: {
       welcome: '肉大师电子杂志工具',
       api: mgz.config.api,
@@ -67,11 +67,11 @@
     },
     onError: function () {
       this.letsRock();
-      location.hash = '#/user/login'
+      location.hash = '#/login/'
     },
     onSuccess: function () {
       if (!this.letsRock()) {
-        location.hash = '#/my';
+        location.hash = '#/my/';
       }
     }
   });
