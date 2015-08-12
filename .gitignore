@@ -6,8 +6,9 @@ bower_components
 node_modules
 
 # build
-src/css
-src/.sass-cache
+css
+.sass-cache
+**/.sass-cache
 
 # assets
 assets
