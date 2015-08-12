@@ -7,7 +7,7 @@
     $body: null,
     $books: null,
     routes: {
-      'my(/?)': 'showMyList'
+      'my/': 'showMyList'
     },
     showMyList: function () {
       this.$body.hideLogin();
