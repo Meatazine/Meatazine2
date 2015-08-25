@@ -29,6 +29,7 @@
     popup: function (options) {
       var popup = $(this.template(options))
         , klass = options.popup || ns.Base;
+      klass = klass instanceof Function ? klass : Nervenet.parseNamespace(klass);
       this.$el.append(popup);
       popup = this.$context.createInstance(klass, _.extend({
         el: popup

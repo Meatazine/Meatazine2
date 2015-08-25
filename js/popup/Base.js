@@ -8,7 +8,7 @@
   var timeout
     , placeholder = '<p><i class="fa fa-spinner fa-spin fa-4x"></i></p>';
 
-  ns.Base = Backbone.View.extend({
+  ns.Base = mgz.view.DataSyncView.extend({
     $context: null,
     events: {
       'shown.bs.modal': 'shownHandler',
@@ -20,16 +20,20 @@
       'success': 'form_successHandler'
     },
     initialize: function (options) {
+      this.model = this.model || this.$context.getValue('model');
       if (options.isRemote) {
         this.$el.addClass('loading')
           .find('.modal-body').html(placeholder);
-        if (/\.hbs/.test(options.content)) {
+        if (/\.hbs$/.test(options.content)) {
           $.get(options.content, _.bind(this.template_loadedHandler, this));
         } else {
+          options.isMD = /\.md$/.test(options.content);
           $.get(options.content, _.bind(this.onLoadComplete, this));
         }
 
         ga('send', 'pageview', options.content);
+      } else {
+        this.onLoadComplete(options.content);
       }
       this.options = options;
       this.$el.modal(options);
@@ -48,6 +52,9 @@
     },
     onLoadComplete: function (response) {
       if (response) {
+        if (this.options && this.options.isMD) {
+          response = marked(response);
+        }
         this.$('.modal-body').html(response);
       }
       this.$el.removeClass('loading')
@@ -56,17 +63,17 @@
     },
     closeButton_clickHandler: function () {
       this.$el.modal('hide');
-      this.trigger('cancel');
+      this.trigger('cancel', this);
     },
     form_successHandler: function () {
       this.hide();
-      this.trigger('success')
+      this.trigger('success');
     },
     submitButton_clickHandler: function (event) {
       if (!event.currentTarget.form) {
         this.$el.modal('hide');
       }
-      this.trigger('confirm');
+      this.trigger('confirm', this);
     },
     template_loadedHandler: function (response) {
       this.template = Handlebars.compile(response);
@@ -75,7 +82,7 @@
     },
     hiddenHandler: function () {
       this.remove();
-      this.trigger('hidden');
+      this.trigger('hidden', this);
     },
     keydownHandler: function (event) {
       if (event.keyCode === 13 && event.ctrlKey) {

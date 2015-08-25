@@ -23,7 +23,7 @@
   ],
   "dependencies": {
     "bootstrap": "~3.3.4",
-    "backbone": "~1.2.1",
+    "backbone": "~1.2.2",
     "handlebars": "~3.0.3",
     "moment": "~2.10.3",
     "html2canvas": "~0.5.0-alpha2",
@@ -35,6 +35,6 @@
     "bootstrap-sass": "twbs/bootstrap-sass#~3.3.4",
     "colors": "~2.2.0",
     "qunit": "~1.18.0",
-    "mh-simple-uploader": "~0.6.1"
+    "mh-simple-uploader": "~0.6.4"
   }
 }

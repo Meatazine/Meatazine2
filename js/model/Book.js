@@ -8,13 +8,6 @@
   };
   ns.Book = Backbone.Model.extend({
     options: options,
-    initialize: function (attr, options) {
-      Backbone.Model.prototype.initialize.call(this, attr, options);
-
-      if (this.isNew()) {
-        this.createPages();
-      }
-    },
     parse: function (response, options) {
       this.createPages(response.book.pages);
       return _.omit(response.book, 'pages');

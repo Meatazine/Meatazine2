@@ -1,18 +1,43 @@
 ﻿<form action="{{API}}" class="model-editor" method="post" id="popup-form">
-  <div class="form-group">
-    <label for="book-name">杂志名称</label>
-    <input class="form-control" name="book-name" id="book-name" placeholder="杂志名称">
-  </div>
-  <div class="form-group">
-    <label for="book-type">杂志类型</label>
-    <select class="form-control" name="book-type" id="book-type">
-      {{#each types}}
-        <option value="{{@index}}">{{.}}</option>
-      {{/each}}
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="book-desc">杂志简介</label>
-    <textarea class="form-control" name="book-desc" id="book-desc" placeholder="杂志简介" rows="3"></textarea>
+  <ul class="nav nav-pills counter" role="tablist">
+    <li role="presentation" class="active"><a href="#basic" aria-controls="basic" role="tab" data-toggle="tab"><span class="counter-item counter-circle"></span> 基础信息</a></li>
+    <li role="presentation"><a href="#template" aria-controls="tempalte" role="tab" data-toggle="tab"><span class="counter-item counter-circle"></span> 选择模板</a></li>
+  </ul>
+
+  <div class="tab-content mt2e">
+    <div role="tabpanel" class="tab-pane active" id="basic">
+      <div class="form-group">
+        <label for="book-name">作品名称</label>
+        <input class="form-control" name="book-name" id="book-name" placeholder="作品名称">
+      </div>
+      <div class="form-group">
+        <label for="book-type">作品类型</label>
+        <select class="form-control" name="book-type" id="book-type">
+          {{#each types}}
+            <option value="{{@index}}">{{.}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="book-desc">作品简介 <span class="text-muted">（可选）</span></label>
+        <textarea class="form-control" name="book-desc" id="book-desc" placeholder="作品简介" rows="3"></textarea>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="template">
+      <ul class="row">
+        <li class="col-sm-6" id="template-0">
+          <img src="img/delta.png" class="img-thumbnail">
+          <h4>Delta</h4>
+        </li>
+        <script type="text/x-handlebars-template">
+          {{{{raw-helper}}}}
+          <li class="col-sm-6" id="template-{{id}}">
+            <img src="{{img}}" class="img-thumbnail">
+            <h4>{{title}}</h4>
+          </li>
+          {{{{/raw-helper}}}}
+        </script>
+      </ul>
+    </div>
   </div>
 </form>

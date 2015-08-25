@@ -1,0 +1,28 @@
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables"
+@import "../../bower_components/colors/sass/variables"
+
+.counter
+  counter-reset: tp-counter
+
+  .counter-item::before
+    counter-increment: tp-counter
+    content: counter(tp-counter)
+
+.counter-circle
+  border: 1px solid
+  border-radius: 50%
+  display: inline-block
+  width: 1.5em
+  text-align: center
+  margin-right: 0.5em
+
+  .active &
+    color: $white
+    border: none
+    background-color: $btn-success-bg
+
+  .navbar-nav > li > a &
+    line-height: 18px
+
+  .navbar-nav > li.active > a &
+    line-height: 20px

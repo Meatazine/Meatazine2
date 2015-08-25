@@ -11,7 +11,7 @@
       , len = arr.length;
     for (; i < len; i++) {
       var pair = arr[i].split('=');
-      arr[pair[0]] = pair[1];
+      obj[pair[0]] = decodeURIComponent(pair[1]);
     }
     return obj;
   };
