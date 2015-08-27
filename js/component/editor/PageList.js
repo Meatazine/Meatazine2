@@ -4,6 +4,7 @@
 'use strict';
 (function (ns) {
   ns.PageList = mgz.component.BaseList.extend({
+    autoFetch: false,
     events: {
       'click li': 'item_clickHandler',
       'click .add-button': 'addButton_clickHandler'

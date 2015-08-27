@@ -3,11 +3,20 @@
  */
 'use strict';
 (function (ns) {
+  var defaults = {
+    button: {
+      type: 'button',
+      label: 'Button',
+      style: 'default'
+    }
+  };
+
   ns.Manager = {
     $context: null,
     map: {
       '#mgz-login': mgz.component.Login,
     },
+    templates: {},
     check: function (el, mediator) {
       var components = [];
       el.data('components', components);
@@ -51,6 +60,20 @@
         }
       }
       return true;
+    },
+    create: function (type, options) {
+      options = _.extend({}, defaults[type], options);
+      if (!this.templates[type]) {
+        var templates = this.templates
+          , placeholder = document.createElement('div');
+        $.get('template/component/' + type + '.hbs', function (response) {
+          var template = templates[type] = Handlebars.compile(response);
+          $(placeholder).replaceWith(template(options));
+        });
+        return placeholder;
+      }
+      return this.templates[type](options);
     }
-  }
+  };
+
 }(Nervenet.createNameSpace('mgz.component')));

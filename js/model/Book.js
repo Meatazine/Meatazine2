@@ -8,6 +8,12 @@
   };
   ns.Book = Backbone.Model.extend({
     options: options,
+    initialize: function (attr, options) {
+      Backbone.Model.prototype.initialize.call(this, attr, options);
+
+      var pages = attr ? attr.pages : [];
+      this.createPages(pages);
+    },
     parse: function (response, options) {
       this.createPages(response.book.pages);
       return _.omit(response.book, 'pages');
@@ -21,8 +27,7 @@
       return json;
     },
     createPages: function (data) {
-      var pages = new ns.Pages(data);
-      this.set('pages', pages);
+      this.pages = new ns.Pages(data);
     }
   });
 }(Nervenet.createNameSpace('mgz.model')));

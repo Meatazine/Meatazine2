@@ -1,14 +1,14 @@
-﻿<form action="{{API}}" class="model-editor" method="post" id="popup-form">
+﻿<form action="{{API}}" class="fake new-book" method="post" id="popup-form">
   <ul class="nav nav-pills counter" role="tablist">
     <li role="presentation" class="active"><a href="#basic" aria-controls="basic" role="tab" data-toggle="tab"><span class="counter-item counter-circle"></span> 基础信息</a></li>
-    <li role="presentation"><a href="#template" aria-controls="tempalte" role="tab" data-toggle="tab"><span class="counter-item counter-circle"></span> 选择模板</a></li>
+    <li role="presentation"><a href="#template" aria-controls="template" role="tab" data-toggle="tab"><span class="counter-item counter-circle"></span> 选择模板</a></li>
   </ul>
 
   <div class="tab-content mt2e">
     <div role="tabpanel" class="tab-pane active" id="basic">
       <div class="form-group">
         <label for="book-name">作品名称</label>
-        <input class="form-control" name="book-name" id="book-name" placeholder="作品名称">
+        <input class="form-control" name="book-name" id="book-name" placeholder="作品名称" required>
       </div>
       <div class="form-group">
         <label for="book-type">作品类型</label>
@@ -24,20 +24,26 @@
       </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="template">
-      <ul class="row">
-        <li class="col-sm-6" id="template-0">
-          <img src="img/delta.png" class="img-thumbnail">
-          <h4>Delta</h4>
-        </li>
+      <div class="row">
+        <div class="col-sm-6 item">
+          <input type="radio" name="template" id="template-0">
+          <label for="template-0">
+            <img src="img/delta.png" class="img-thumbnail">
+            <span>Delta</span>
+          </label>
+        </div>
         <script type="text/x-handlebars-template">
-          {{{{raw-helper}}}}
-          <li class="col-sm-6" id="template-{{id}}">
+        {{{{raw-helper}}}}
+        <div class="col-sm-6 item">
+          <input type="radio" name="template" id="template-{{id}}">
+          <label for="template-{{id}}">
             <img src="{{img}}" class="img-thumbnail">
-            <h4>{{title}}</h4>
-          </li>
-          {{{{/raw-helper}}}}
+            <span>{{title}}</span>
+          </label>
+        </div>
+        {{{{/raw-helper}}}}
         </script>
-      </ul>
+      </div>
     </div>
   </div>
 </form>

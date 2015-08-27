@@ -10,7 +10,7 @@
       mgz.view.Loader.prototype.initialize.call(this, options);
 
       this.model.on('change', this.model_changeHandler, this);
-      this.collection = this.model.get('pages');
+      this.collection = this.model.pages;
       this.collection.on('select', this.collection_selectHandler, this);
       this.options = options;
     },
