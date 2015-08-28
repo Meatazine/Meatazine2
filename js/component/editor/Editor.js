@@ -17,7 +17,8 @@
     render: function () {
       mgz.view.Loader.prototype.render.call(this);
 
-      var currPage = this.collection.at(this.options.page);
+      var template = this.model.get('template')
+        , currPage = this.collection.at(this.options.page);
       this.list = new ns.editor.PageList({
         el: this.$('.page-list'),
         collection: this.collection
@@ -28,7 +29,10 @@
       });
       this.$('h1').text(this.model.get('book-name'));
 
-      this.collection.trigger('select', currPage, currPage.id || currPage.cid);
+      if (template && template.paged) {
+        this.collection.trigger('select', currPage, currPage.id || currPage.cid);
+        this.$el.addClass('paged');
+      }
     },
     collection_selectHandler: function (model, id) {
       this.main.setModel(model);

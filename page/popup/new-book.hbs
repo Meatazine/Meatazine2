@@ -1,4 +1,4 @@
-﻿<form action="{{API}}" class="fake new-book" method="post" id="popup-form">
+﻿<form action="{{API}}book/" class="fake new-book" method="post" id="popup-form">
   <ul class="nav nav-pills counter" role="tablist">
     <li role="presentation" class="active"><a href="#basic" aria-controls="basic" role="tab" data-toggle="tab"><span class="counter-item counter-circle"></span> 基础信息</a></li>
     <li role="presentation"><a href="#template" aria-controls="template" role="tab" data-toggle="tab"><span class="counter-item counter-circle"></span> 选择模板</a></li>
@@ -24,20 +24,13 @@
       </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="template">
-      <div class="row">
-        <div class="col-sm-6 item">
-          <input type="radio" name="template" id="template-0">
-          <label for="template-0">
-            <img src="img/delta.png" class="img-thumbnail">
-            <span>Delta</span>
-          </label>
-        </div>
+      <div class="row template-list" data-url="{{API}}template/">
         <script type="text/x-handlebars-template">
         {{{{raw-helper}}}}
         <div class="col-sm-6 item">
-          <input type="radio" name="template" id="template-{{id}}">
+          <input type="radio" name="template" id="template-{{id}}" value="{{id}}">
           <label for="template-{{id}}">
-            <img src="{{img}}" class="img-thumbnail">
+            <img src="{{thumbnail}}" class="img-thumbnail">
             <span>{{title}}</span>
           </label>
         </div>

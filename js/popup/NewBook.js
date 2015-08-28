@@ -30,6 +30,13 @@
       this.$('.modal-footer').prepend(btn);
       this.$('.btn-primary').addClass('hide');
     },
+    onLoadComplete: function (response) {
+      ns.Base.prototype.onLoadComplete.call(this, response);
+
+      this.templates = new mgz.component.BaseList({
+        el: this.$('.template-list')
+      });
+    },
     input_changeHandler: function () {
       var is_empty = this.$(':invalid').length > 0
         , no_template = this.$('[name=template]:checked').length === 0;
@@ -44,6 +51,7 @@
     },
     submitHandler: function (event) {
       var attr = _.toObject($(event.target).serializeArray());
+      attr.template = this.templates.collection.get(attr.template).toJSON();
       this.model.set(attr);
       this.$el.modal('hide');
       this.$context.mapValue('book', this.model);

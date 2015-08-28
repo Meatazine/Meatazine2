@@ -15,6 +15,7 @@
     $context: null,
     map: {
       '#mgz-login': mgz.component.Login,
+      '.base-list': mgz.component.BaseList
     },
     templates: {},
     check: function (el, mediator) {

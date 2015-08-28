@@ -77,7 +77,7 @@
     },
     template_loadedHandler: function (response) {
       this.template = Handlebars.compile(response);
-      var data = _.extend({API: mgz.API}, this.options, this.model ? this.model.toJSON() : null);
+      var data = _.extend({API: mgz.config.API}, this.options, this.model ? this.model.toJSON() : null);
       this.onLoadComplete(this.template(data));
     },
     hiddenHandler: function () {

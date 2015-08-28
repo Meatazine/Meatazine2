@@ -4,6 +4,9 @@
 'use strict';
 (function (ns) {
   ns.parseQuery = function (url) {
+    if (!url) {
+      return null;
+    }
     url = url.charAt(0) === '?' ? url.slice(1) : url;
     var obj = {}
       , arr = url.split('&')
